@@ -1,0 +1,139 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <div class="backgroundAccueil parallax">
+
+        <img src="{{ asset('images/RestauRapide.png') }}" alt="options de commandes">
+
+    </div>
+    <aside class="quisommesNous flexRow">
+        <div class="texte">
+            <h3>Qui suis-je?</h3>
+            <p>
+                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet dolore, ipsam maiores nostrum
+                    velit? Aliquam assumenda blanditiis consequuntur, corporis doloremque, dolores est fuga fugit inventore,
+                    necessitatibus reprehenderit similique sit.Animi consequatur cum cumque delectus dicta
+                    dolorum enim ex expedita illum iure magnam modi molestiae, molestias odio omnis pariatur quam ratione
+                    repellendus rerum suscipit. Adipisci aperiam ea natus nobis nulla?Adipisci animi consectetur
+                    deleniti doloremque doloribus dolorum eligendi esse ex facilis hic id ipsum iste itaque magnam nesciunt,
+                    nihil non obcaecati odio odit quae qui, quis repudiandae saepe sint ullam!</span>
+            </p>
+            <img src="{{ asset('images/logos/pilon.png') }}" alt="Logos" class="pilon">
+        </div>
+        <img src="{{ asset('images/patron.jpg') }}" alt="chef au travail">
+    </aside>
+    <aside class="plats flexRow ">
+        <div class="parallax boucane"></div>
+
+        <div class="texte">
+            <h3>Des plats savoureux!</h3>
+            <p>
+                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur itaque placeat sed! A amet
+                    cupiditate, deserunt dolore eaque eius illum incidunt iste magnam maiores mollitia placeat porro quibusdam
+                    reiciendis voluptas?Aliquam at atque blanditiis commodi, doloremque dolores et impedit inventore ipsum
+                    laboriosam libero magnam magni maiores minima molestiae nisi nulla numquam provident quam quidem quo,
+                    rem rerum sit tempore voluptates.Commodi consectetur dolores eum, nihil non rerum sequi sint. Alias
+                    aliquid illo ipsa numquam odio repudiandae voluptatum? Deleniti explicabo fugit laboriosam natus odio
+                    tenetur ut? Eligendi eveniet ex similique vitae.</span>
+            </p>
+            <img src="{{ asset('images/logos/pilon.png') }}" alt="logo Ti Gout Pei" class="pilon">
+        </div>
+    </aside>
+    <aside class="specialite flexColumn">
+        <div class="flexRow titreFleur">
+            <img src="{{ asset('images/logos/fleur.png') }}" alt="logo Ti Gout Pei" class="fleur">
+            <h3>Des spécialités réunionnaises</h3>
+        </div>
+        <div class="flexRow liens">
+            <a href="#" class="midi">
+                <div><p>FORMULES DU MIDI</p></div>
+            </a>
+            <a href="#" class="soirees">
+                <div><p>MENUS SOIRÉES TRAITEUR</p></div>
+            </a>
+            <a href="#" class="commandes">
+                <div><p>SERVIES AVEC SOIN ET PASSION</p></div>
+            </a>
+        </div>
+        <div>
+            <a href="#"><img src="{{ asset('/images/logos/feuillageGauche.png') }}" alt="feuillage de palmier gauche"
+                             class="palmierGauche"></a>
+            <div class="boutonCommande"><a href="#" role="button">JE PASSE COMMANDE </a></div>
+            <a href="#"><img src="{{ asset('/images/logos/feuillageDroit.png') }}" alt="feuillage de palmier droite"
+                             class="palmierDroite"></a>
+        </div>
+    </aside>
+    <aside class="actu flexColumn">
+        <div class="flexRow titreFleur">
+            <img src="{{ asset('images/logos/fleur.png') }}" alt="logo Ti Gout Pei" class="fleur">
+            <h3>Actualités</h3>
+            <img src="{{ asset('/images/logos/feuillageDroit.png') }}" alt="feuillage de palmier droite reflet"
+                 class="reflet">
+        </div>
+        <div>
+            <a href="#" class="prev"></a>
+            <div class="card-deck flexRow cartes">
+                <a href="#" class="card">
+                    <div class="card-body">
+                        <div class="imgCard">
+                            <img src="{{ asset('images/marcher.png') }}" alt="marché de noel">
+                        </div>
+                    </div>
+                    <div class="card-footer justify-content-center">
+                        <h4>
+                            <p>SOIRÉE CRÉOLE</p>
+                            LE
+                            <time>6 DÉCEMBRE</time>
+                            A
+                            <adress>AVRILLÉ 49240</adress>
+                        </h4>
+                        <div>PROGRAMME</div>
+                    </div>
+                </a>
+                <a href="#" class="card">
+                    <div class="card-body">
+                        <div class="imgCard">
+                            <img src="{{ asset('images/soireeCreole.jpg') }}" alt="equipe traiteur">
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <h4><strong>SOIRÉE CRÉOLE</strong> LE
+                            <time>6 DÉCEMBRE</time>
+                            A
+                            <adress>AVRILLÉ 49240</adress>
+                        </h4>
+                        <div>PROGRAMME</div>
+                    </div>
+                </a>
+            </div>
+            <a href="#" class="next"></a>
+        </div>
+    </aside>
+    <aside class="contactezNous flexColumn parallax">
+        <div class="flexColumn">
+            <div>
+                <h3>Contactez-nous!</h3>
+                <img src="{{ asset('images/logos/pilon.png') }}" alt="Logos" class="pilon">
+            </div>
+            <div>
+                <adress>
+                    Ti Goût Peï <br>
+                    Adresse rue CP ville <br>
+                    tel : 06.00.00.00.00 <br>
+                    tigoutpei.sophie@gmail.com <br>
+                    fb:
+                </adress>
+            </div>
+            <h5>Contactez-nous dès aujourd'hui!</h5>
+        </div>
+        <div>
+            <a href="#">OU NOUS TROUVER?</a>
+            <a href="#">PASSEZ COMMANDE</a>
+        </div>
+        <div class="cover"></div>
+
+    </aside>
+
+{% endblock %}

@@ -1,0 +1,312 @@
+.backgroundAccueil {
+    height: 60vh;
+    background-image: url("../images/caseCreole.png");
+    display: flex;
+    align-items: flex-end;
+}
+
+.backgroundAccueil > img {
+    width: 100%;
+    max-height: 25%;
+    max-width: 100%;
+
+}
+
+.parallax {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.flexRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.quisommesNous > .texte {
+    background-color: white;
+}
+
+.texte {
+    text-align: justify;
+    padding-inline: 2em;
+
+    vertical-align: middle;
+    position: relative;
+}
+
+
+h3 {
+    text-align: center;
+    margin: 1em;
+}
+
+aside {
+    height: 60vh;
+
+}
+
+.quisommesNous > img {
+    width: 55vw;
+}
+
+aside > .texte {
+    max-width: 45%;
+    background-color: #A0D693;
+}
+
+.boucane {
+    width: 60vw;
+    flex-grow: 1;
+    background-image: url('../images/boucane.jpg');
+    background-size: 60% 120%;
+}
+
+.pilon {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    max-height: 6em;
+}
+
+.specialite {
+    position: relative;
+    display: flex;
+    background-color: #FBD843;
+}
+
+.titreFleur {
+    position: relative;
+}
+.specialite>.titreFleur{
+    background:linear-gradient(#A0D693,#FBD843);
+}
+
+.titreFleur > h3 {
+    margin-left: 5em;
+}
+
+.specialite > div:nth-child(2) {
+    height: 100%;
+}
+
+.specialite > div:last-child {
+    max-width: 50%;
+    align-self: center;
+    margin-bottom: 0.5em;
+}
+
+
+.liens > a {
+    text-decoration: none;
+    font-size: 1.5em;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.liens > a > div {
+    max-width: 50%;
+    height: 40%;
+    background-color: RGBA(52, 53, 65, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.liens > a > div > p {
+    text-align: center;
+}
+
+.fleur {
+    height: 5em;
+    align-content: center;
+    position: absolute;
+}
+
+.midi {
+    display: flex;
+    background-image: url("../images/rougailSaucisse.jpg");
+    background-size: 100% 100%;
+    /*Top-Right-Bot-Left*/
+    margin: 0 1.5em 0.5em 3em;
+    flex-basis: 33%;
+}
+
+.soirees {
+    display: flex;
+    background-image: url("../images/boxApero.jpg");
+    background-size: 100% 100%;
+    margin: 0 1.5em 0.5em 1.5em;
+    flex-basis: 33%;
+}
+
+.commandes {
+    display: flex;
+    background-image: url("../images/rougailHachard.jpg");
+    background-size: 100% 100%;
+    margin: 0 3em 0.5em 1.5em;
+    flex-basis: 33%;
+}
+
+.boutonCommande {
+    width: 100%;
+    height: 3em;
+    background-color: RGB(56, 103, 51);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin: 0 1em 0 1em;
+}
+
+.palmierGauche {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 15em;
+    width: 20em;
+    z-index: 49;
+}
+
+.palmierDroite {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 15em;
+    width: 20em;
+    z-index: 49;
+}
+
+.actu{
+    background-color: #FFF4F0;
+}
+
+.actu>.titreFleur{
+    background:linear-gradient(#FBD843,#FFF4F0);
+}
+.reflet {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 15em;
+    width: 20em;
+    z-index: 30;
+    transform: scaleY(-1);
+}
+.actu>div:nth-child(2){
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.cartes {
+    width: 80%;
+    max-width: 80%;
+    height: 95%;
+    max-height: 95%;
+    justify-content: center;
+
+}
+
+.card{
+    margin: 0.5em;
+    height: 100%;
+    max-height: 100%;
+    width: 100%;
+    max-width: 100%;
+    background-color: #D1678B;
+    z-index: 31;
+}
+.card-body{
+    height: 80%;
+    max-height: 80%;
+}
+
+.imgCard {
+    height: 100%;
+    max-height: 100%;
+display: flex;
+    justify-content: center;
+}
+
+.imgCard > img {
+    height: 100%;
+    max-height: 100%;
+    width: auto;
+    max-width: 100%;
+}
+.card{
+    text-decoration: none;
+    outline: none;
+}
+.card:link{
+    text-decoration: none;
+}
+.card:hover{
+    color: tomato;
+}
+.card-footer{
+    color: #D1678B ;
+    background-color: #FFF4F0;
+    margin: 0 1em;
+   text-align: center;
+}
+.card-footer>h4{
+    font-size: 1rem;
+}
+a.prev::before {
+    content:"";
+    position:absolute;left:5em;top:45%;
+
+    /* taille */
+    height:0;width:0;
+
+    /* les bordures */
+    border-right:36px solid #AAAAAA;
+    border-bottom:18px solid transparent;
+    border-top:18px solid transparent;
+}
+
+a.next::after {
+    content:"";
+    position:absolute;right:5em;top:50%;
+
+    /* taille */
+    height:0;width:0;
+
+    /* les bordures */
+    border-left:36px solid #AAAAAA;
+    border-bottom:18px solid transparent;
+    border-top:18px solid transparent;
+}
+.contactezNous{
+    width: 100%;
+    position: relative;
+    background-image: url('../images/barachois.png');
+    background-position: left 30vw top 0;
+    overflow: hidden;
+    z-index: 19;
+
+}
+.cover{
+    position:absolute;left:0;top:0;
+    border-left: 100vh solid #00BF63;
+    border-bottom: 100vw solid transparent;
+    border-top: 0 solid transparent;
+    z-index: 20;
+}
+.contactezNous>div:first-child{
+
+    z-index: 21;
+}
+.contactezNous>div:nth-child(2){
+}

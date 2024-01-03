@@ -1,0 +1,25 @@
+@media (width <= 990px) {
+    body{
+        width: 100%;
+    }
+    header{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+@media (width >990px) {
+    body {
+        display: block;
+        width: 80vw;
+margin: auto;
+    }
+    header{
+        margin-top: 1.5em;
+        display: flex;
+        flex-direction: row;
+        background-color: #D1678B;
+    }
+
+}
