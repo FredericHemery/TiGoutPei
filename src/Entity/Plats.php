@@ -36,6 +36,12 @@ class Plats
     #[ORM\ManyToMany(targetEntity: Categorie::class, mappedBy: 'numPlat')]
     private Collection $categories;
 
+    #[ORM\Column(length: 50)]
+    private ?string $nomImage = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $imgDescription = null;
+
     public function __construct()
     {
         $this->constitues = new ArrayCollection();
@@ -157,6 +163,30 @@ class Plats
         if ($this->categories->removeElement($category)) {
             $category->removeNumPlat($this);
         }
+
+        return $this;
+    }
+
+    public function getNomImage(): ?string
+    {
+        return $this->nomImage;
+    }
+
+    public function setNomImage(string $nomImage): static
+    {
+        $this->nomImage = $nomImage;
+
+        return $this;
+    }
+
+    public function getImgDescription(): ?string
+    {
+        return $this->imgDescription;
+    }
+
+    public function setImgDescription(string $imgDescription): static
+    {
+        $this->imgDescription = $imgDescription;
 
         return $this;
     }
