@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}La carte{% endblock %}
+
+{% block body %}
+    <div class="listePlats flexColumn">
+            <table>
+                <tbody>
+                {% for plat in plats %}
+                    <article>
+                        {#  {% if plat.categorie == 'grignotte' %} #}
+                        <tr class="lignePlats collapsed" data-toggle="collapse" data-target="#detailsPlat{{ plat.id }}">
+                            <td>{{ plat.nomPlat }}</td>
+                            {% if plat.quantite is defined %}
+                                <td>{{ plat.quantite }} pièces</td>
+                            {% endif %}
+                            <td>{{ plat.prixVenteTTCPlat }} €</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <p>{{ plat.descriptionPlat }}</p>
+
+                            </td>
+                        </tr>
+
+                        {#  {% endif %} #}
+                    </article>
+                {% endfor %}
+                </tbody>
+
+            </table>
+    </div>
+
+    <div class="example-wrapper">
+        <h1>Hello {{ controller_name }}! ✅</h1>
+
+        This friendly message is coming from:
+        <ul>
+            <li>Your controller at <code><a
+                            href="{{ 'C:/wamp64/www/TiGoutPei/src/Controller/CarteController.php'|file_link(0) }}">src/Controller/CarteController.php</a></code>
+            </li>
+            <li>Your template at <code><a
+                            href="{{ 'C:/wamp64/www/TiGoutPei/templates/carte/index.html.twig'|file_link(0) }}">templates/carte/index.html.twig</a></code>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
