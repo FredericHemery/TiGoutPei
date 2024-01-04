@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PlatsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PlatsRepository::class)]
@@ -41,6 +42,9 @@ class Plats
 
     #[ORM\Column(length: 50)]
     private ?string $imgDescription = null;
+
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $quantite = null;
 
     public function __construct()
     {
@@ -187,6 +191,18 @@ class Plats
     public function setImgDescription(string $imgDescription): static
     {
         $this->imgDescription = $imgDescription;
+
+        return $this;
+    }
+
+    public function getQuantite(): ?int
+    {
+        return $this->quantite;
+    }
+
+    public function setQuantite(?int $quantite): static
+    {
+        $this->quantite = $quantite;
 
         return $this;
     }

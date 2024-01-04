@@ -10,8 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route(path: '/')]
 class MainController extends AbstractController
 {
-    #[Route(path: '', name: 'accueil')]
-    public function Accueil()
+    #[Route(path: 'accueil', name: 'accueil')]
+    public function Accueil(): Response
     {
         return $this->render('main/accueil.html.twig');
     }

@@ -24,6 +24,7 @@ class PlatsFixtures extends Fixture
             $plat->setPrixRevient($prixRevient);
             $plat->setImgDescription($faker->sentence(3,true));
             $plat->setNomImage($faker->word);
+            $plat->setQuantite($faker->randomDigit());
             $manager->persist($plat);
         }
         $manager->flush();

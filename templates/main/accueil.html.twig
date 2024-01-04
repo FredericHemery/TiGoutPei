@@ -1,12 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Ti Goût Peï - Des plats savoureux{% endblock %}
 
 {% block body %}
-    <div class="backgroundAccueil parallax">
+    <div class="backgroundAccueil parallax flexColumn">
+        <div class="flexRow flex-fill propositions">
+            <div>
+                <table>
+                    <tr>
+                        <td>Plats</td>
+                    </tr>
 
-        <img src="{{ asset('images/RestauRapide.png') }}" alt="options de commandes">
-
+                    <tr>
+                        <td>rougail saucisses</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="brand flexColumn">
+                <h2>Ti Goût Peï</h2>
+                <h4>Des plats savoureux qui vous feront voyager</h4>
+                <a href="{{ path('carte_plats') }}" role="button" class="flexRow" title="voir les plats"><div>&#x2192;</div><div>Notre carte</div></a>
+            </div>
+        </div>
+        <img src="{{ asset('images/RestauRapide.png') }}" alt="options de commandes Ti Goût Peï">
     </div>
     <aside class="quisommesNous flexRow">
         <div class="texte">
@@ -20,9 +36,9 @@
                     deleniti doloremque doloribus dolorum eligendi esse ex facilis hic id ipsum iste itaque magnam nesciunt,
                     nihil non obcaecati odio odit quae qui, quis repudiandae saepe sint ullam!</span>
             </p>
-            <img src="{{ asset('images/logos/pilon.png') }}" alt="Logos" class="pilon">
+            <img src="{{ asset('images/logos/pilon.png') }}" alt="pilon Ti Goût Peï" class="pilon">
         </div>
-        <img src="{{ asset('images/patron.jpg') }}" alt="chef au travail">
+        <img src="{{ asset('images/patron.jpg') }}" alt="chef de Ti Goût Peï au travail">
     </aside>
     <aside class="plats flexRow ">
         <div class="parallax boucane"></div>
@@ -38,36 +54,36 @@
                     aliquid illo ipsa numquam odio repudiandae voluptatum? Deleniti explicabo fugit laboriosam natus odio
                     tenetur ut? Eligendi eveniet ex similique vitae.</span>
             </p>
-            <img src="{{ asset('images/logos/pilon.png') }}" alt="logo Ti Gout Pei" class="pilon">
+            <img src="{{ asset('images/logos/pilon.png') }}" alt="logo fleur Ti Gout Pei" class="pilon">
         </div>
     </aside>
     <aside class="specialite flexColumn">
         <div class="flexRow titreFleur">
-            <img src="{{ asset('images/logos/fleur.png') }}" alt="logo Ti Gout Pei" class="fleur">
+            <img src="{{ asset('images/logos/fleur.png') }}" alt="logo fleur Ti Gout Pei" class="fleur">
             <h3>Des spécialités réunionnaises</h3>
         </div>
         <div class="flexRow liens">
-            <a href="#" class="midi">
+            <a href="#" class="midi" title="voir les plats du midi">
                 <div><p>FORMULES DU MIDI</p></div>
             </a>
-            <a href="#" class="soirees">
+            <a href="#" class="soirees" title="voir les menus traiteur">
                 <div><p>MENUS SOIRÉES TRAITEUR</p></div>
             </a>
-            <a href="#" class="commandes">
+            <a href="#" class="commandes" title="commander">
                 <div><p>SERVIES AVEC SOIN ET PASSION</p></div>
             </a>
         </div>
         <div>
-            <a href="#"><img src="{{ asset('/images/logos/feuillageGauche.png') }}" alt="feuillage de palmier gauche"
+            <a href="#"><img src="{{ asset('/images/logos/feuillageGauche.png') }}" alt="feuillage de palmier gauche" title="voir les plats du midi"
                              class="palmierGauche"></a>
             <div class="boutonCommande"><a href="#" role="button">JE PASSE COMMANDE </a></div>
-            <a href="#"><img src="{{ asset('/images/logos/feuillageDroit.png') }}" alt="feuillage de palmier droite"
+            <a href="#"><img src="{{ asset('/images/logos/feuillageDroit.png') }}" alt="feuillage de palmier droite" title="commander"
                              class="palmierDroite"></a>
         </div>
     </aside>
     <aside class="actu flexColumn">
         <div class="flexRow titreFleur">
-            <img src="{{ asset('images/logos/fleur.png') }}" alt="logo Ti Gout Pei" class="fleur">
+            <img src="{{ asset('images/logos/fleur.png') }}" alt="logo fleur Ti Gout Pei" class="fleur">
             <h3>Actualités</h3>
             <img src="{{ asset('/images/logos/feuillageDroit.png') }}" alt="feuillage de palmier droite reflet"
                  class="reflet">
@@ -83,7 +99,7 @@
                     </div>
                     <div class="card-footer justify-content-center">
                         <h4>
-                            <span>SOIRÉE CRÉOLE</span>
+                            <strong>SOIRÉE CRÉOLE</strong>
                             LE
                             <time>6 DÉCEMBRE</time>
                             A
@@ -98,11 +114,13 @@
                             <img src="{{ asset('images/soireeCreole.jpg') }}" alt="equipe traiteur">
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <h4><strong>SOIRÉE CRÉOLE</strong> LE
+                    <div class="card-footer justify-content-center">
+                        <h4>
+                            <strong>SOIRÉE CRÉOLE</strong>
+                            LE
                             <time>6 DÉCEMBRE</time>
                             A
-                            <adress>AVRILLÉ 49240</adress>
+                            <address>AVRILLÉ 49240</address>
                         </h4>
                         <div>PROGRAMME</div>
                     </div>
@@ -115,16 +133,16 @@
         <div class="flexColumn">
             <div>
                 <h3>Contactez-nous!</h3>
-                <img src="{{ asset('images/logos/pilon.png') }}" alt="Logos" class="pilon">
+                <img src="{{ asset('images/logos/pilon.png') }}" alt="pilon Ti Goût Peï" class="pilon">
             </div>
             <div>
-                <adress>
-                    Ti Goût Peï <br>
-                    Adresse rue CP ville <br>
-                    tel : 06.00.00.00.00 <br>
-                    tigoutpei.sophie@gmail.com <br>
-                    fb:
-                </adress>
+                <address>
+                    <p>Ti Goût Peï </p>
+                    <p>Adresse rue CP ville</p>
+                    <p>tel : 06.00.00.00.00 </p>
+                    <p>tigoutpei.sophie@gmail.com </p>
+                    <p>fb:</p>
+                </address>
             </div>
             <h5>Contactez-nous dès aujourd'hui!</h5>
         </div>
