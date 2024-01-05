@@ -3,45 +3,124 @@
 {% block title %}La carte{% endblock %}
 
 {% block body %}
-    <div class="listePlats flexColumn">
+    <div class="listePlats">
+        <div class="titreApero"><h3>Box Apréro<span>- à composer</span></h3></div>
             <table>
-                <tbody>
+                <tbody class="apero">
                 {% for plat in plats %}
-                    <article>
-                        {#  {% if plat.categorie == 'grignotte' %} #}
-                        <tr class="lignePlats collapsed" data-toggle="collapse" data-target="#detailsPlat{{ plat.id }}">
+
+                          {% if plat.categorie == 'apero' %}
+                        <tr class="lignePlats collapsed" data-target="detailsPlat{{ plat.id }}" >
                             <td>{{ plat.nomPlat }}</td>
-                            {% if plat.quantite is defined %}
-                                <td>{{ plat.quantite }} pièces</td>
+                            <td>
+                            {% if plat.quantite is not null %}
+                                {{ plat.quantite }} pièces
                             {% endif %}
+                            </td>
                             <td>{{ plat.prixVenteTTCPlat }} €</td>
                         </tr>
-                        <tr>
-                            <td colspan="3">
+                        <tr class="description" id="detailsPlat{{ plat.id }}">
+                            <td >
                                 <p>{{ plat.descriptionPlat }}</p>
 
                             </td>
                         </tr>
 
-                        {#  {% endif %} #}
-                    </article>
+                          {% endif %}
+
                 {% endfor %}
                 </tbody>
-
             </table>
-    </div>
 
-    <div class="example-wrapper">
-        <h1>Hello {{ controller_name }}! ✅</h1>
-
-        This friendly message is coming from:
-        <ul>
-            <li>Your controller at <code><a
-                            href="{{ 'C:/wamp64/www/TiGoutPei/src/Controller/CarteController.php'|file_link(0) }}">src/Controller/CarteController.php</a></code>
-            </li>
-            <li>Your template at <code><a
-                            href="{{ 'C:/wamp64/www/TiGoutPei/templates/carte/index.html.twig'|file_link(0) }}">templates/carte/index.html.twig</a></code>
-            </li>
-        </ul>
     </div>
+    <div class="listePlats">
+        <div class="titreApero"><h3>A grignoter</h3></div>
+            <table>
+                <tbody class="grignotte">
+                {% for plat in plats %}
+
+                          {% if plat.categorie == 'grignotte' %}
+                        <tr class="lignePlats collapsed" data-target="detailsPlat{{ plat.id }}" >
+                            <td>{{ plat.nomPlat }}</td>
+                            <td>
+                            {% if plat.quantite is not null %}
+                                {{ plat.quantite }} pièces
+                            {% endif %}
+                            </td>
+                            <td>{{ plat.prixVenteTTCPlat }} €</td>
+                        </tr>
+                        <tr class="description" id="detailsPlat{{ plat.id }}">
+                            <td >
+                                <p>{{ plat.descriptionPlat }}</p>
+
+                            </td>
+                        </tr>
+
+                          {% endif %}
+
+                {% endfor %}
+                </tbody>
+            </table>
+
+    </div>
+    <div class="listePlats">
+        <div class="titreApero"><h3>Nos Plats</h3></div>
+        <table>
+            <tbody class="platsResistance">
+            {% for plat in plats %}
+
+                {% if plat.categorie == 'plat' %}
+                    <tr class="lignePlats collapsed" data-target="detailsPlat{{ plat.id }}" >
+                        <td>{{ plat.nomPlat }}</td>
+                        <td>
+                            {% if plat.quantite is not null %}
+                                {{ plat.quantite }} pièces
+                            {% endif %}
+                        </td>
+                        <td>{{ plat.prixVenteTTCPlat }} €</td>
+                    </tr>
+                    <tr class="description" id="detailsPlat{{ plat.id }}">
+                        <td >
+                            <p>{{ plat.descriptionPlat }}</p>
+
+                        </td>
+                    </tr>
+
+                {% endif %}
+
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+{#    #}
+{#    <div class="listePlats">#}
+{#        <table>#}
+{#            <tbody class="desserts">#}
+{#            {% for plat in plats %}#}
+
+{#                {% if plat.categorie == 'dessert' %}#}
+{#                    <tr class="lignePlats collapsed" data-target="detailsPlat{{ plat.id }}" >#}
+{#                        <td>{{ plat.nomPlat }}</td>#}
+{#                        <td>#}
+{#                            {% if plat.quantite is not null %}#}
+{#                                {{ plat.quantite }} pièces#}
+{#                            {% endif %}#}
+{#                        </td>#}
+{#                        <td>{{ plat.prixVenteTTCPlat }} €</td>#}
+{#                    </tr>#}
+{#                    <tr class="description" id="detailsPlat{{ plat.id }}">#}
+{#                        <td >#}
+{#                            <p>{{ plat.descriptionPlat }}</p>#}
+
+{#                        </td>#}
+{#                    </tr>#}
+
+{#                {% endif %}#}
+
+{#            {% endfor %}#}
+{#            </tbody>#}
+{#        </table>#}
+
+{#    </div>#}
 {% endblock %}

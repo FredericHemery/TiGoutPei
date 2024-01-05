@@ -15,3 +15,24 @@
 .plats{
     text-decoration: none;
 }
+
+.lignePlats{
+    cursor: pointer;
+}
+
+.lignePlats:hover{
+    background-color: darkslateblue;
+}
+
+.collapsed+tr{
+    display: none;
+}
+table{
+    width: 100%;
+}
+h3{
+    text-align: left;
+}
+.titreApero>h3>span{
+    font-size: 0.5em;
+}

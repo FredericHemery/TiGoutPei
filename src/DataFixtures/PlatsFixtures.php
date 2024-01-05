@@ -12,6 +12,8 @@ class PlatsFixtures extends Fixture
     {
         for ($i = 1; $i <= 20; $i++)
         {
+            $alea= rand(0,3);
+
             $faker = \Faker\Factory::create();
             $prixHT= $faker->randomFloat(null,2,50.23);
             $prixTTC= $prixHT*1.1;
@@ -24,7 +26,25 @@ class PlatsFixtures extends Fixture
             $plat->setPrixRevient($prixRevient);
             $plat->setImgDescription($faker->sentence(3,true));
             $plat->setNomImage($faker->word);
-            $plat->setQuantite($faker->randomDigit());
+            $plat->setQuantite($faker->optional(0.7,null)->randomDigit(1,9));
+            // Affecte une catégorie aleatoirement
+            switch ($alea) {
+                case 0:
+                    $plat->setCategorie("apero");
+                    break;
+                case 1:
+                    $plat->setCategorie("grignotte");
+                    break;
+                case 2:
+                    $plat->setCategorie("plat");
+                    break;
+                case 3:
+                     $plat->setCategorie("dessert");
+                    break;
+                default:
+                    $plat->setCategorie("inconnu");
+                    break;
+            }
             $manager->persist($plat);
         }
         $manager->flush();
