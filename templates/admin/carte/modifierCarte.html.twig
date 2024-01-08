@@ -1,45 +1,64 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}La carte{% endblock %}
+{% block title %}BackOffice{% endblock %}
 {% block stylesheets %}
     {{ parent() }} {# Cette ligne inclut le contenu du bloc stylesheets du template de base #}
-    <link rel="stylesheet" href="{{ asset('css/laCarte.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/modifierCarte.css') }}">
 {% endblock %}
-
 {% block body %}
-    <div class="carteContainer flexColumn">
-        <div class="listePlats flexColumn">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navRecherche">
+        <form class="form-inline my-2 my-lg-0  w-50 formRecherche d-flex flex-row" action="#">
+            <input class="form-control mr-sm-2 text-center" type="search" placeholder="Recherche par mots clés" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+        </form>
+    </nav>
+
+    <div class="carteContainer ">
+        <div class="listePlats ">
             <div class="titreApero">
-                <h3>Box Apréro<span>- à composer</span></h3>
+                <h3>Box Apréro</h3>
             </div>
-            <div class="listesContainer flexRow">
-                <table>
-                    <tbody>
-                    {% for plat in plats %}
+            <div class="listesContainer ">
+                <form action="#">
+                    <table>
+                        <thead>
+                        <tr>
+                            <td><label for="nom">nom du plat</label></td>
+                            <td><label for="qte">nombre de pieces</label></td>
+                            <td><label for="prix">prix ttc</label></td>
+                        </tr>
+                        </thead>
+                        <tbody class="apero">
+                        {% for plat in plats %}
 
-                        {% if plat.categorie == 'apero' %}
-                            <tr class="lignePlats collapsed" data-target="detailsPlat{{ plat.id }}">
-                                <td>{{ plat.nomPlat }}</td>
-                                <td>
-                                    {% if plat.quantite is not null %}
-                                        {{ plat.quantite }} pièces
-                                    {% endif %}
-                                </td>
-                                <td>{{ plat.prixVenteTTCPlat }} €</td>
-                            </tr>
-                            <tr class="description" id="detailsPlat{{ plat.id }}">
-                                <td>
-                                    <p>{{ plat.descriptionPlat }}</p>
+                            {% if plat.categorie == 'apero' %}
+                                <tr>
+                                    <td><input type="text" name="nom" value="{{ plat.nomPlat }}"></td>
+                                    <td>
+                                        <input type="text" name="qte" value="{{ plat.quantite }}">
+                                    </td>
+                                    <td><input type="text" name="prix" value="{{ plat.prixVenteTTCPlat }}"></td>
+                                    <td><input type="submit" name="modifier" value="modifier"></td>
+                                    <td><button type="submit" name="supprimer" value="{{ plat.id }}">Supprimer</button></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        <label for="detailsPlat">description</label>
+                                    </td>
+                                </tr>
 
-                                </td>
-                            </tr>
+                                <tr class="m-3">
+                                    <td colspan="5">
+                                        <textarea name="detailsPlat">{{ plat.descriptionPlat }}</textarea>
+                                    </td>
+                                </tr>
 
-                        {% endif %}
+                            {% endif %}
 
-                    {% endfor %}
-                    </tbody>
-                </table>
-                <div class="apetizer"></div>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </form>
             </div>
 
         </div>
@@ -110,4 +129,5 @@
 
         </div>
     </div>
+
 {% endblock %}

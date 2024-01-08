@@ -1,0 +1,28 @@
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+a:hover,
+a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+.flexColumn{
+    display: flex;
+    flex-direction: column;
+}
+
+.admin{
+    height: 35em;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.admin>a{
+    width: 30%;
+}
+

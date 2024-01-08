@@ -1,0 +1,15 @@
+.navRecherche{
+    justify-content: center;
+}
+
+tr>td:first-child{
+    width: 60%;
+    height: 1.5em
+}
+
+textarea{
+    width: 100%;
+}
+form{
+    margin-bottom: 2em;
+}

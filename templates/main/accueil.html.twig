@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Ti Goût Peï - Des plats savoureux{% endblock %}
+{% block stylesheets %}
+    {{ parent() }} {# Cette ligne inclut le contenu du bloc stylesheets du template de base #}
+    <link rel="stylesheet" href="{{ asset('css/accueil.css') }}">
+{% endblock %}
 
 {% block body %}
     <div class="backgroundAccueil parallax flexColumn">

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+{% block stylesheets %}
+    {{ parent() }} {# Cette ligne inclut le contenu du bloc stylesheets du template de base #}
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+{% endblock %}
+{% block body %}
+<div class="admin flexColumn">
+    <a href="{{ path('app_admin_plats') }}" title="modifier/ajouter un plat" role="button" class="btn btn-primary btn-lg">modifier/ajouter un plat</a>
+    <a href="{{ path('accueil') }}" title="modifier un plat" role="button" class="btn btn-primary btn-lg">Changer une Photos</a>
+    <a href="{{ path('accueil') }}" title="modifier un plat" role="button" class="btn btn-primary btn-lg">changer un texte</a>
+    <a href="{{ path('accueil') }}" title="modifier un plat" role="button" class="btn btn-primary btn-lg">Ajouter ou supprimer un évenement</a>
+</div>
+{% endblock %}
