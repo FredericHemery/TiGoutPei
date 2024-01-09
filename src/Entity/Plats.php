@@ -7,6 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use http\Message;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: PlatsRepository::class)]
 class Plats
@@ -17,19 +20,28 @@ class Plats
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank (message: "veuillez remplir ce champ")]
+    #[Assert\NotNull (message: "null n'est pas recevable")]
+    #[Assert\Length(min: "2", max: "100",minMessage:"au moins deux caractères", maxMessage: "maximum 100 caractères" )]
+    #[Assert\NoSuspiciousCharacters]
     private ?string $nomPlat = null;
 
     #[ORM\Column]
+    #[Assert\PositiveOrZero]
     private ?float $prixVenteHTPlat = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\NoSuspiciousCharacters]
     private ?string $descriptionPlat = null;
 
     #[ORM\Column]
-    private ?float $prixRevient = null;
+    #[Assert\PositiveOrZero (message: "Veuillez entrer un nombre positif")]
+    private ?float $prixRevient;
 
     #[ORM\Column]
-    private ?float $prixVenteTTCPlat = null;
+    #[Assert\PositiveOrZero (message: "Veuillez entrer un nombre positif")]
+    private ?float $prixVenteTTCPlat;
 
     #[ORM\ManyToMany(targetEntity: Constitue::class, mappedBy: 'numPlat')]
     private Collection $constitues;
@@ -37,17 +49,30 @@ class Plats
     #[ORM\ManyToMany(targetEntity: Categorie::class, mappedBy: 'numPlat')]
     private Collection $categories;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50,nullable: true)]
+    #[Assert\NoSuspiciousCharacters]
     private ?string $nomImage = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50,nullable: true)]
+    #[Assert\NoSuspiciousCharacters]
     private ?string $imgDescription = null;
 
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    #[Assert\Positive (message: "Veuillez entrer un chiffre positif")]
+    #[Assert\Regex('/^\d+$/',message: "Veuillez entrer un chiffre positif")]
     private ?int $quantite = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $categorie = null;
+// definition de la liste de choix
+    public const CATEGORIE = ['apero','grignote','plat','dessert'];
+    #[ORM\Column(length: 8)]
+    #[Assert\Length (min: 4,
+        max: 8,
+        minMessage: 'Choisissez une catégorie valide',
+        maxMessage: 'Choisissez une catégorie valide')]
+
+    #[Assert\Choice (choices: Plats::CATEGORIE, message: "Choisissez une catégorie valide")]
+    #[Assert\NoSuspiciousCharacters]
+        private ?string $categorie = null;
 
     public function __construct()
     {

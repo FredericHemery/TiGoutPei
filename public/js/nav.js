@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var nav = document.querySelector('.sticky-nav');
         var scrolled = window.scrollY;
 
-        // Ajustez ce nombre en fonction de votre disposition
+        // a partir de quelle hauteur la barre devient fixe
         var navHeight = 100;
 
         if (scrolled > navHeight) {

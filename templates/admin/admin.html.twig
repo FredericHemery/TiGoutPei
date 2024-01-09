@@ -1,15 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}page Admin{% endblock %}
 {% block stylesheets %}
     {{ parent() }} {# Cette ligne inclut le contenu du bloc stylesheets du template de base #}
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 {% endblock %}
 {% block body %}
 <div class="admin flexColumn">
-    <a href="{{ path('app_admin_plats') }}" title="modifier/ajouter un plat" role="button" class="btn btn-primary btn-lg">modifier/ajouter un plat</a>
-    <a href="{{ path('accueil') }}" title="modifier un plat" role="button" class="btn btn-primary btn-lg">Changer une Photos</a>
-    <a href="{{ path('accueil') }}" title="modifier un plat" role="button" class="btn btn-primary btn-lg">changer un texte</a>
-    <a href="{{ path('accueil') }}" title="modifier un plat" role="button" class="btn btn-primary btn-lg">Ajouter ou supprimer un évenement</a>
+    <a href="{{ path('app_admin_plats') }}" title="modifier" role="button" class="btn btn-primary btn-lg">modifier</a>
+    <a href="{{ path('app_admin_create') }}" title="ajouter un plat" role="button" class="btn btn-primary btn-lg">ajouter un plat</a>
+    <a href="{{ path('accueil') }}" title="modifier photo" role="button" class="btn btn-primary btn-lg">Changer une Photos</a>
+    <a href="{{ path('accueil') }}" title="modifier un texte" role="button" class="btn btn-primary btn-lg">changer un texte</a>
+    <a href="{{ path('accueil') }}" title="ajouter un evenement" role="button" class="btn btn-primary btn-lg">Ajouter évenement</a>
+    <a href="{{ path('accueil') }}" title="supprimer un evenement" role="button" class="btn btn-primary btn-lg">Supprimer un évenement</a>
 </div>
 {% endblock %}

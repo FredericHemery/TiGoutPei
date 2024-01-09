@@ -1,6 +1,7 @@
 @media (width <= 990px) {
     body{
         width: 100%;
+        font-size: 2em;
     }
     header{
         display: flex;
