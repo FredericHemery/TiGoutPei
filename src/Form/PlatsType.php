@@ -22,38 +22,39 @@ class PlatsType extends AbstractType
         $builder
             ->add('nomPlat', TextType::class)
             ->add('descriptionPlat', TextareaType::class)
-            ->add('quantite', IntegerType::class,[
-                'required' => false
+            ->add('quantite', IntegerType::class, [
+                'required' => false,
+                'trim' => true
             ])
             ->add('categorie', ChoiceType::class, [
+
                     'choices' => [
                         'apero' => 'apero',
                         'grignote' => 'grignote',
                         'plat' => 'plat',
                         'dessert' => 'dessert'
                     ],
-
                     'multiple' => false]
             )
             ->add('prixVenteTTCPlat', MoneyType::class, [
                 'label' => 'Prix de vente TTC',
-                'currency'=> false
+                'currency' => false
             ])
             ->add('prixVenteHTPlat', MoneyType::class, [
                 'label' => 'Prix de vente HT',
                 'required' => false,
-                'currency'=> false
+                'currency' => false
             ])
             ->add('prixRevient', MoneyType::class, [
                 'label' => 'Prix de revient',
                 'required' => false,
-                'currency'=> false
+                'currency' => false
             ])
-            ->add('nomImage', TextType::class,[
-                'required'=> false
+            ->add('nomImage', TextType::class, [
+                'required' => false
             ])
-            ->add('imgDescription', TextType::class,[
-                'required'=> false
+            ->add('imgDescription', TextType::class, [
+                'required' => false
             ]);
     }
 

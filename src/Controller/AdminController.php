@@ -7,12 +7,11 @@ use App\Form\PlatsType;
 use App\Repository\PlatsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-
-;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+
 
 #[Route(path: '/admin', name: '')]
 class AdminController extends AbstractController
@@ -26,7 +25,7 @@ class AdminController extends AbstractController
     }
 
     #[Route(path: '/creerPlat', name: 'app_admin_create')]
-    public function Create(Request $request, EntityManagerInterface $entityManager): Response
+    public function Create(Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
     {
         $plats = new Plats();
         $platsForm = $this->createForm(PlatsType::class, $plats);
@@ -34,7 +33,10 @@ class AdminController extends AbstractController
         $platsForm->handleRequest($request);
 
         if ($platsForm->isSubmitted() && $platsForm->isValid()) {
+
+
             //todo: approfondir l'aspect comptabilité
+            //bien penser a arrondir! stocké en float en BDD
 //recuperations de données du formulaire
             $prixRevient = $platsForm->get('prixRevient')->getData();
             $prixHT = $platsForm->get('prixVenteHTPlat')->getData();
@@ -52,14 +54,15 @@ class AdminController extends AbstractController
 
             $entityManager->persist($plats);
             $entityManager->flush();
-            $this->addFlash('success','plat ajouté à la liste');
+            $this->addFlash('success', 'plat ajouté à la liste');
             return $this->redirectToRoute('app_admin_create');
-        }
-        $this->addFlash('error','erreur lors de l\'ajout du plat');
-        return $this->render('admin/create.html.twig', [
-            'platsForm' => $platsForm->createView()
-        ]);
 
+        }
+
+        return $this->render('admin/create.html.twig', [
+            'platsForm' => $platsForm->createView(),
+
+        ]);
     }
 
 

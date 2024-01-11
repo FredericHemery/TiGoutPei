@@ -34,14 +34,14 @@
 
                             {% if plat.categorie == 'apero' %}
                                 <tr>
-                                    <td><input type="text" name="nom" value="{{ plat.nomPlat }}"></td>
+                                    <td><input type="text" name="nom" id="nom" value="{{ plat.nomPlat }}"></td>
                                     <td>
-                                        <input type="text" name="qte" value="{{ plat.quantite }}">
+                                        <input type="text" name="qte" id="qte" value="{{ plat.quantite }}">
                                     </td>
-                                    <td><input type="text" name="prix" value="{{ plat.prixVenteTTCPlat }}"></td>
+                                    <td><input type="text" name="prix" id="prix" value="{{ plat.prixVenteTTCPlat }}"></td>
                                     <td><input type="submit" name="modifier" value="modifier"></td>
                                     <td>
-                                        <button type="submit" name="supprimer" value="{{ plat.id }}">Supprimer</button>
+                                        <button type="submit" name="supprimer" value="{{ plat.id }}" class="btn-alert">Supprimer</button>
                                     </td>
                                 </tr>
 
@@ -71,11 +71,11 @@
 
                             {% if plat.categorie == 'grignotte' %}
                                 <tr>
-                                    <td><input type="text" name="nom" value="{{ plat.nomPlat }}"></td>
+                                    <td><input type="text" name="nom" id="nom" value="{{ plat.nomPlat }}"></td>
                                     <td>
-                                        <input type="text" name="qte" value="{{ plat.quantite }}">
+                                        <input type="text" name="qte" id="qte" value="{{ plat.quantite }}">
                                     </td>
-                                    <td><input type="text" name="prix" value="{{ plat.prixVenteTTCPlat }}"></td>
+                                    <td><input type="text" name="prix" id="prix" value="{{ plat.prixVenteTTCPlat }}"></td>
                                     <td><input type="submit" name="modifier" value="modifier"></td>
                                     <td>
                                         <button type="submit" name="supprimer" value="{{ plat.id }}">Supprimer</button>
@@ -108,11 +108,11 @@
 
                         {% if plat.categorie == 'plat' %}
                             <tr>
-                                <td><input type="text" name="nom" value="{{ plat.nomPlat }}"></td>
+                                <td><input type="text" name="nom" id="nom" value="{{ plat.nomPlat }}"></td>
                                 <td>
-                                    <input type="text" name="qte" value="{{ plat.quantite }}">
+                                    <input type="text" name="qte" id="qte" value="{{ plat.quantite }}">
                                 </td>
-                                <td><input type="text" name="prix" value="{{ plat.prixVenteTTCPlat }}"></td>
+                                <td><input type="text" name="prix" id="prix" value="{{ plat.prixVenteTTCPlat }}"></td>
                                 <td><input type="submit" name="modifier" value="modifier"></td>
                                 <td>
                                     <button type="submit" name="supprimer" value="{{ plat.id }}">Supprimer</button>
