@@ -57,8 +57,7 @@ class Plats
     private ?string $imgDescription = null;
 
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
-    #[Assert\Positive (message: "Veuillez entrer un chiffre positif")]
-    #[Assert\Regex('/^\d+$/',message: "Veuillez entrer un chiffre positif")]
+    #[Assert\Regex('/^\d+$/',message: "Veuillez entrer un entier positif")]
     private ?int $quantite = null;
 
 // definition de la liste de choix

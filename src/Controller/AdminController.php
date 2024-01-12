@@ -25,9 +25,21 @@ class AdminController extends AbstractController
     }
 
     #[Route(path: '/creerPlat', name: 'app_admin_create')]
-    public function Create(Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
+    public function Create(Plats $plats,Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
     {
+
+
+        ////////////////////////////PB de ID dans le path pour le lien amenant a la modification de plats twig admin////
+        $id=$plats->getId();
+        if ($id !== null) {
+            // Si $id n'est pas null, c'est une modification, tu dois récupérer le plat existant
+            $plats = $entityManager->getRepository(Plats::class)->find($id);
+            dd($plats->getNomPlat());
+        } else {
+            // Sinon, c'est une création, tu instancies un nouveau plat
+            dd('pas d\'id');
         $plats = new Plats();
+        }
         $platsForm = $this->createForm(PlatsType::class, $plats);
 
         $platsForm->handleRequest($request);
@@ -61,7 +73,6 @@ class AdminController extends AbstractController
 
         return $this->render('admin/create.html.twig', [
             'platsForm' => $platsForm->createView(),
-
         ]);
     }
 
@@ -77,13 +88,22 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/modifierCarte/suprimerPlat', name: 'app_supp_plats')]
-    public function Delete(EntityManagerInterface $entityManager, PlatsRepository $platsRepository): Response
+    #[Route(path: '/modifierCarte/suprimerPlat/{id}', name: 'app_supp_plats')]
+    public function Delete(Plats $plats,EntityManagerInterface $entityManager, PlatsRepository $platsRepository): Response
     {
-        //todo: mettre en place suppression de plats
-        return $this->render('admin/carte/modifierCarte.html.twig', [
-            'controller_name' => 'AdminController',
-        ]);
+        $idPlat= $plats->getId();
+        $nomPlat= $plats->getNomPlat();
+// si l'id a bien été envoyé, traite la demande
+        if ($idPlat) {
+            // Supprime le plat de la base de données
+            $entityManager->remove($plats);
+            $entityManager->flush();
+            $this->addFlash('success', 'Plat '.$nomPlat.'  supprimé avec succès');
+        } else {
+            $this->addFlash('error', 'Plat '.$nomPlat.'  introuvable');
+        }
+
+        return $this->redirectToRoute('app_admin_plats');
     }
 
 }

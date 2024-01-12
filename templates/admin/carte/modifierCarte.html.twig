@@ -20,7 +20,7 @@
                 <h3>Box Apéro</h3>
             </div>
             <div class="listesContainer ">
-                <form action="#">
+                <form action="{{ path('app_admin_create',{'id': plat.id}) }}" method="get">
                     <table>
                         <thead>
                         <tr>
@@ -41,7 +41,8 @@
                                     <td><input type="text" name="prix" id="prix" value="{{ plat.prixVenteTTCPlat }}"></td>
                                     <td><input type="submit" name="modifier" value="modifier"></td>
                                     <td>
-                                        <button type="submit" name="supprimer" value="{{ plat.id }}" class="btn-alert">Supprimer</button>
+                                        {#                                    <button type="submit" name="supprimer" value="{{ plat.id }}">Supprimer</button>#}
+                                        <a href="{{ path('app_supp_plats',{'id': plat.id}) }}" class="btn-alert">Supprimer</a>
                                     </td>
                                 </tr>
 
@@ -115,7 +116,8 @@
                                 <td><input type="text" name="prix" id="prix" value="{{ plat.prixVenteTTCPlat }}"></td>
                                 <td><input type="submit" name="modifier" value="modifier"></td>
                                 <td>
-                                    <button type="submit" name="supprimer" value="{{ plat.id }}">Supprimer</button>
+{#                                    <button type="submit" name="supprimer" value="{{ plat.id }}">Supprimer</button>#}
+                                    <a href="{{ path('app_supp_plats',{'id': plat.id}) }}" class="btn-alert">Supprimer</a>
                                 </td>
                             </tr>
 
