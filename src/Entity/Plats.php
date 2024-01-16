@@ -22,6 +22,7 @@ class Plats
     #[Assert\NotBlank (message: "veuillez remplir ce champ")]
     #[Assert\NotNull (message: "null n'est pas recevable")]
     #[Assert\Length(min: "2", max: "100",minMessage:"au moins deux caractères", maxMessage: "maximum 100 caractères" )]
+    #[Assert\Regex('/^[a-zA-Z0-9\s\']+$/u',message: "Veuillez ne pas entrer de caracteres speciaux")]
     #[Assert\NoSuspiciousCharacters]
     private ?string $nomPlat = null;
 
@@ -32,6 +33,7 @@ class Plats
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\NoSuspiciousCharacters]
+    #[Assert\Regex('/^[a-zA-Z0-9\s\']+$/u',message: "Veuillez ne pas entrer de caracteres speciaux")]
     private ?string $descriptionPlat = null;
 
     #[ORM\Column]
@@ -50,10 +52,12 @@ class Plats
 
     #[ORM\Column(length: 50,nullable: true)]
     #[Assert\NoSuspiciousCharacters]
+    #[Assert\Regex('/^[a-zA-Z0-9\s]+$/',message: "Veuillez ne pas entrer de caracteres speciaux")]
     private ?string $nomImage = null;
 
     #[ORM\Column(length: 50,nullable: true)]
     #[Assert\NoSuspiciousCharacters]
+    #[Assert\Regex('/^[a-zA-Z0-9\s]+$/',message: "Veuillez ne pas entrer de caracteres speciaux")]
     private ?string $imgDescription = null;
 
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]

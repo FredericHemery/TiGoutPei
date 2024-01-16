@@ -23,11 +23,11 @@ class CarteController extends AbstractController
         ]);
     }
 
-    #[Route(path:'/details/{id}', name:'details')]
-public function details( int $id): Response
-    {
-        //todo: afficher le detail d'un plat
-        dd('détails à afficher');
-
-    }
+//    #[Route(path:'/details/{id}', name:'details')]
+//public function details( int $id): Response
+//    {
+//        //todo: afficher le detail d'un plat
+//        dd('détails à afficher');
+//
+//    }
 }
