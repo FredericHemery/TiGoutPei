@@ -37,6 +37,7 @@ class AdminController extends AbstractController
         } else {
             $modification = true;
         }
+            $nomPlatDebut = $plats->getNomPlat();
         //je récupere le formulaire créé avec dans le formType avec sa verification de données
         $platsForm = $this->createForm(PlatsType::class, $plats);
         // je recupere ici les données envoyées par le formulaire twig(ou pas)
@@ -83,7 +84,17 @@ class AdminController extends AbstractController
             $entityManager->flush();
 
             if ($modification) {
-                $this->addFlash('success', 'plat modifié avec succes');
+                //je prend le nom du plat enregistré
+                    $nomPlat = $plats->getNomPlat();
+                    //je compare le nom du plat enregistré avec le nom d'origine
+                if ($nomPlatDebut !== $nomPlat) {
+                    //si celui ci est different, je passe l'ancien nom en message pour verifier que
+                    // l'on a changé le bon article
+                    $this->addFlash('success', '" '.$nomPlatDebut.' "' . ' modifié avec succes en '.'" '.$nomPlat.' "');
+                }else{
+                    $this->addFlash('success', $nomPlat . ' modifié avec succes');
+                }
+                    return $this->redirectToRoute('carte_plats');
             } else {
                 $this->addFlash('success', 'plat ajouté à la liste');
             }
@@ -97,52 +108,19 @@ class AdminController extends AbstractController
         ]);
     }
 
-
-    #[Route(path: '/modifierCarte', name: 'app_admin_plats')]
-    public function Afficherplats(EntityManagerInterface $entityManager, PlatsRepository $platsRepository): Response
-    {
-        $plats = $platsRepository->findAll();
-        dump($plats);
-        return $this->render('admin/carte/modifierCarte.html.twig', [
-            'controller_name' => 'AdminController',
-            'plats' => $plats
-        ]);
-    }
-
     #[Route(path: '/modifierCarte/suprimerPlat/{id}', name: 'app_supp_plats')]
-    public function Delete(EntityManagerInterface $entityManager, PlatsRepository $platsRepository, Plats $plats): Response
+    public function Delete(EntityManagerInterface $entityManager, PlatsRepository $platsRepository, Plats $plats = null): Response
     {
-        $idPlat = $plats->getId();
-        $nomPlat = $plats->getNomPlat();
-// si l'id a bien été envoyé, traite la demande
-        if ($idPlat) {
+// si $plat existe, traite la demande
+        if ($plats) {
+            $nomPlat = $plats->getNomPlat();
             // Supprime le plat de la base de données
             $entityManager->remove($plats);
             $entityManager->flush();
             $this->addFlash('success', 'Plat ' . $nomPlat . '  supprimé avec succès');
-        } else {
-            $this->addFlash('error', 'Plat ' . $nomPlat . '  introuvable');
         }
 
-        return $this->redirectToRoute('app_admin_plats');
-    }
-
-    #[Route(path: '/modifierCarte/modifierPlat/{id}', name: 'app_mod_plats')]
-    public function modifier(Request $request, EntityManagerInterface $entityManager, Plats $plats)
-    {
-        $idPlat = $plats->getId();
-        $plat = $entityManager->getRepository(Plats::class)->find($idPlat);
-
-        // reprendre le create du sortirProjet le comprendre et tenter de repartir de la.
-        //soit l'integrer dans le Create (ce qui serait logique. juste passer en parametres les elements modifiés)
-        //peut etre passer par modifier pour ensuite envoyer les elements a create pour faire le persist
-
-
-        return $this->render('admin/carte/modifierPlat.hmtl.twig', [
-            'controller_name' => 'AdminController',
-            'plats' => $plat
-        ]);
-
+        return $this->redirectToRoute('carte_plats');
     }
 
 }
