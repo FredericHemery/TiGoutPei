@@ -13,5 +13,13 @@
     <a href="{{ path('accueil') }}" title="modifier un texte" role="button" class="btn btn-primary btn-lg">changer un texte</a>
     <a href="{{ path('accueil') }}" title="ajouter un evenement" role="button" class="btn btn-primary btn-lg">Ajouter évenement</a>
     <a href="{{ path('accueil') }}" title="supprimer un evenement" role="button" class="btn btn-primary btn-lg">Supprimer un évenement</a>
+
+    {% if (is_granted("ROLE_SUPER_ADMIN")) %}
+
+    <a href="{{ path('app_register') }}" title="ajouter un collaborateur" role="button" class="btn btn-primary btn-lg">Ajouter un collaborateur</a>
+    <a href="#" title="supprimer un collaborateur" role="button" class="btn btn-primary btn-lg">Supprimer un collaborateur</a>
+
+    {% endif %}
+
 </div>
 {% endblock %}

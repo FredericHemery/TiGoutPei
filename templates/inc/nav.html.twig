@@ -1,6 +1,6 @@
-
 <nav class="navbar navbar-expand-lg ">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse row" id="navbarNav">
@@ -20,9 +20,22 @@
             <li class="nav-item col text-center">
                 <a class="nav-link " href="#">NEWS</a>
             </li>
-            <li class="nav-item col text-center">
-                <a class="nav-link" href="{{ path('app_admin')}}">SE CONNECTER</a>
-            </li>
+
+            {% if is_granted("ROLE_ADMIN") or is_granted("ROLE_SUPER_ADMIN") %}
+                <li>
+                    <a class="nav-link " href="{{ path('app_admin') }}">MODIFICATIONS</a>
+                </li>
+                {% endif %}
+            {% if app.user %}
+                <li>
+                    <a class="nav-link " href="{{ path('app_logout') }}">SE DECONNECTER</a>
+                </li>
+            {% else %}
+
+                <li class="nav-item col text-center">
+                    <a class="nav-link" href="{{ path('app_login') }}">SE CONNECTER</a>
+                </li>
+            {% endif %}
         </ul>
     </div>
 </nav>

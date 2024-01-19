@@ -7,10 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
 #[ORM\Entity(repositoryClass: PlatsRepository::class)]
+#[UniqueEntity(fields: ['nomPlat'], message: 'Le plat existe déja')]
 class Plats
 {
     #[ORM\Id]
@@ -18,7 +20,7 @@ class Plats
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100, unique: true)]
     #[Assert\NotBlank (message: "veuillez remplir ce champ")]
     #[Assert\NotNull (message: "null n'est pas recevable")]
     #[Assert\Length(min: "2", max: "100",minMessage:"au moins deux caractères", maxMessage: "maximum 100 caractères" )]
@@ -37,22 +39,21 @@ class Plats
     private ?string $descriptionPlat = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     #[Assert\PositiveOrZero (message: "Veuillez entrer un nombre positif")]
     private ?float $prixRevient;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     #[Assert\PositiveOrZero (message: "Veuillez entrer un nombre positif")]
     private ?float $prixVenteTTCPlat;
 
     #[ORM\ManyToMany(targetEntity: Constitue::class, mappedBy: 'numPlat')]
     private Collection $constitues;
 
-    #[ORM\ManyToMany(targetEntity: Categorie::class, mappedBy: 'numPlat')]
-    private Collection $categories;
-
     #[ORM\Column(length: 50,nullable: true)]
     #[Assert\NoSuspiciousCharacters]
-    #[Assert\Regex('/^[a-zA-Z0-9\s]+$/',message: "Veuillez ne pas entrer de caracteres speciaux")]
+    #[Assert\Regex('/^[a-zA-Z0-9\sàâäçéèêëîïôöùûüÿ.,;:!?"\'()\-]+$/',message: "Veuillez éviter les caracteres speciaux")]
     private ?string $nomImage = null;
 
     #[ORM\Column(length: 50,nullable: true)]
@@ -79,7 +80,6 @@ class Plats
     public function __construct()
     {
         $this->constitues = new ArrayCollection();
-        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -169,33 +169,6 @@ class Plats
     {
         if ($this->constitues->removeElement($constitue)) {
             $constitue->removeNumPlat($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Categorie>
-     */
-    public function getCategories(): Collection
-    {
-        return $this->categories;
-    }
-
-    public function addCategory(Categorie $category): static
-    {
-        if (!$this->categories->contains($category)) {
-            $this->categories->add($category);
-            $category->addNumPlat($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCategory(Categorie $category): static
-    {
-        if ($this->categories->removeElement($category)) {
-            $category->removeNumPlat($this);
         }
 
         return $this;

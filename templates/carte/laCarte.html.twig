@@ -7,7 +7,12 @@
 {% endblock %}
 
 {% block body %}
+
     <div class="carteContainer flexColumn">
+    {#     import de la partie barre de recherche #}
+        <div class="align-self-center">
+            {% include "inc/searchData.html.twig" %}
+        </div>
         <div class="listePlats flexColumn">
             <div class="titreApero">
                 <h3>Box Apéro<span>- à composer</span></h3>
@@ -26,9 +31,11 @@
                                     {% endif %}
                                 </td>
                                 <td>{{ plat.prixVenteTTCPlat }} €</td>
-                                <td><a href="{{ path('app_admin_create',{'id': plat.id}) }}" class="btn-success">Modifier</a></td>
+                                <td><a href="{{ path('app_admin_create',{'id': plat.id}) }}" class="btn-success">Modifier</a>
+                                </td>
                                 <td>
-                                    <a href="{{ path('app_supp_plats',{'id': plat.id}) }}" class="btn-alert">Supprimer</a>
+                                    <a href="{{ path('app_supp_plats',{'id': plat.id}) }}"
+                                       class="btn-alert">Supprimer</a>
                                 </td>
                             </tr>
                             <tr class="description" id="detailsPlat{{ plat.id }}">
@@ -53,7 +60,7 @@
                     <tbody class="grignotte">
                     {% for plat in plats %}
 
-                        {% if plat.categorie == 'grignotte' %}
+                        {% if plat.categorie == 'grignote' %}
                             <tr class="lignePlats collapsed" data-target="detailsPlat{{ plat.id }}">
                                 <td>{{ plat.nomPlat }}</td>
                                 <td>
@@ -62,9 +69,11 @@
                                     {% endif %}
                                 </td>
                                 <td>{{ plat.prixVenteTTCPlat }} €</td>
-                                <td><a href="{{ path('app_admin_create',{'id': plat.id}) }}" class="btn-success">Modifier</a></td>
+                                <td><a href="{{ path('app_admin_create',{'id': plat.id}) }}" class="btn-success">Modifier</a>
+                                </td>
                                 <td>
-                                    <a href="{{ path('app_supp_plats',{'id': plat.id}) }}" class="btn-alert">Supprimer</a>
+                                    <a href="{{ path('app_supp_plats',{'id': plat.id}) }}"
+                                       class="btn-alert">Supprimer</a>
                                 </td>
                             </tr>
                             <tr class="description" id="detailsPlat{{ plat.id }}">
@@ -99,9 +108,11 @@
                                     {% endif %}
                                 </td>
                                 <td>{{ plat.prixVenteTTCPlat }} €</td>
-                                <td><a href="{{ path('app_admin_create',{'id': plat.id}) }}" class="btn-success">Modifier</a></td>
+                                <td><a href="{{ path('app_admin_create',{'id': plat.id}) }}" class="btn-success">Modifier</a>
+                                </td>
                                 <td>
-                                    <a href="{{ path('app_supp_plats',{'id': plat.id}) }}" class="btn-alert">Supprimer</a>
+                                    <a href="{{ path('app_supp_plats',{'id': plat.id}) }}"
+                                       class="btn-alert">Supprimer</a>
                                 </td>
                             </tr>
                             <tr class="description" id="detailsPlat{{ plat.id }}">

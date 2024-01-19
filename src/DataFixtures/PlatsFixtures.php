@@ -28,12 +28,13 @@ class PlatsFixtures extends Fixture
             $plat->setNomImage($faker->word);
             $plat->setQuantite($faker->optional(0.7,null)->randomDigit(1,9));
             // Affecte une catégorie aleatoirement
+            //todo: mettre a jour avec table categorie
             switch ($alea) {
                 case 0:
                     $plat->setCategorie("apero");
                     break;
                 case 1:
-                    $plat->setCategorie("grignotte");
+                    $plat->setCategorie("grignote");
                     break;
                 case 2:
                     $plat->setCategorie("plat");

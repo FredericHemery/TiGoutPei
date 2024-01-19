@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Plats;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use \App\Model\SearchData;
 
 /**
  * @extends ServiceEntityRepository<Plats>
@@ -21,28 +22,26 @@ class PlatsRepository extends ServiceEntityRepository
         parent::__construct($registry, Plats::class);
     }
 
-//    /**
-//     * @return Plats[] Returns an array of Plats objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
 
-//    public function findOneBySomeField($value): ?Plats
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    /**
+     * recupere les plats qui correspondent au mot clé renseigné
+     */
+    public function findBySearch(SearchData $searchData):array
+    {
+        // J'initialise ma requête sur la table "plats"
+        $plats = $this->createQueryBuilder('plats');
+
+        // Si des mots-clés sont fournis, je les cherches dans les noms de plat ou dans la description
+        if (!empty($searchData->mots) && preg_match('/^[a-zA-Z0-9\s\']+$/u', $searchData->mots)) {
+            $plats = $plats
+                ->where('plats.nomPlat LIKE :mot OR plats.descriptionPlat LIKE :mot')
+                ->setParameter('mot', "%{$searchData->mots}%");
+        }
+
+        // Je retourne les résultats obtenus par ordre alphabétique du nom du plat
+        return $plats
+            ->orderBy('plats.nomPlat', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

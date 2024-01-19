@@ -1,0 +1,11 @@
+{{ form_errors(rechercheForm) }}
+{{ form_start(rechercheForm) }}
+<div class="input-group ">
+    <div class="form-outline" data-mdb-input-init>
+        {{ form_widget(rechercheForm.mots) }}
+    </div>
+    <button type="submit" class="btn btn-primary" data-mdb-ripple-init>
+        <i class="fas fa-search"></i>
+    </button>
+</div>
+{{ form_end(rechercheForm) }}

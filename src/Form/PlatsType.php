@@ -27,6 +27,10 @@ class PlatsType extends AbstractType
                 'trim' => true
             ])
             ->add('categorie', ChoiceType::class, [
+                //todo:EntityType::class[ 'class'=>Categorie::class
+                    //'choice_label'=>'libelle'
+                    //'placeholder'=>'apero']
+
 
                     'choices' => [
                         'apero' => 'apero',
@@ -46,6 +50,7 @@ class PlatsType extends AbstractType
                 'currency' => false
             ])
             ->add('prixRevient', MoneyType::class, [
+                'empty_data'=> 0,
                 'label' => 'Prix de revient',
                 'required' => false,
                 'currency' => false
