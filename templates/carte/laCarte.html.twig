@@ -9,7 +9,7 @@
 {% block body %}
 
     <div class="carteContainer flexColumn">
-    {#     import de la partie barre de recherche #}
+        {#     import de la partie barre de recherche #}
         <div class="align-self-center">
             {% include "inc/searchData.html.twig" %}
         </div>
@@ -22,7 +22,7 @@
                     <tbody>
                     {% for plat in plats %}
 
-                        {% if plat.categorie == 'apero' %}
+                        {% if plat.categoriePlat.libelle == 'apero' %}
                             <tr class="lignePlats collapsed" data-target="detailsPlat{{ plat.id }}">
                                 <td>{{ plat.nomPlat }}</td>
                                 <td>
@@ -31,16 +31,20 @@
                                     {% endif %}
                                 </td>
                                 <td>{{ plat.prixVenteTTCPlat }} €</td>
-                                <td><a href="{{ path('app_admin_create',{'id': plat.id}) }}" class="btn-success">Modifier</a>
-                                </td>
-                                <td>
-                                    <a href="{{ path('app_supp_plats',{'id': plat.id}) }}"
-                                       class="btn-alert">Supprimer</a>
-                                </td>
+                                {% if is_granted("ROLE_ADMIN") or is_granted("ROLE_SUPER_ADMIN") %}
+                                    <td><a href="{{ path('app_admin_create',{'id': plat.id}) }}" class="btn-success">Modifier</a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('app_supp_plats',{'id': plat.id}) }}"
+                                           class="btn-alert boutonSupprimer">Supprimer</a>
+                                    </td>
+                                {% endif %}
                             </tr>
-                            <tr class="description" id="detailsPlat{{ plat.id }}">
+                            <tr class="detailCache" id="detailsPlat{{ plat.id }}">
                                 <td>
-                                    <p>{{ plat.descriptionPlat }}</p>
+                                    <p class="description">{{ plat.descriptionPlat }}</p>
+                                    <img class="imgDescription" src="{{ asset('images/'~plat.nomImage) }}"
+                                         alt="{{ plat.imgDescription }}">
                                 </td>
                             </tr>
 
@@ -59,27 +63,29 @@
                 <table>
                     <tbody class="grignotte">
                     {% for plat in plats %}
-
-                        {% if plat.categorie == 'grignote' %}
-                            <tr class="lignePlats collapsed" data-target="detailsPlat{{ plat.id }}">
-                                <td>{{ plat.nomPlat }}</td>
-                                <td>
-                                    {% if plat.quantite is not null %}
-                                        {{ plat.quantite }} pièces
-                                    {% endif %}
-                                </td>
-                                <td>{{ plat.prixVenteTTCPlat }} €</td>
+                        {% if plat.categoriePlat.libelle == 'grignote' %}
+                        <tr class="lignePlats collapsed" data-target="detailsPlat{{ plat.id }}">
+                            <td>{{ plat.nomPlat }}</td>
+                            <td>
+                                {% if plat.quantite is not null %}
+                                    {{ plat.quantite }} pièces
+                                {% endif %}
+                            </td>
+                            <td>{{ plat.prixVenteTTCPlat }} €</td>
+                            {% if is_granted("ROLE_ADMIN") or is_granted("ROLE_SUPER_ADMIN") %}
                                 <td><a href="{{ path('app_admin_create',{'id': plat.id}) }}" class="btn-success">Modifier</a>
                                 </td>
                                 <td>
                                     <a href="{{ path('app_supp_plats',{'id': plat.id}) }}"
-                                       class="btn-alert">Supprimer</a>
+                                       class="btn-alert boutonSupprimer">Supprimer</a>
                                 </td>
-                            </tr>
-                            <tr class="description" id="detailsPlat{{ plat.id }}">
+                                </tr>
+                            {% endif %}
+                            <tr class="detailCache" id="detailsPlat{{ plat.id }}">
                                 <td>
-                                    <p>{{ plat.descriptionPlat }}</p>
-
+                                    <p class="description">{{ plat.descriptionPlat }}</p>
+                                    <img class="imgDescription" src="{{ asset('images/'~plat.nomImage) }}"
+                                         alt="{{ plat.imgDescription }}">
                                 </td>
                             </tr>
 
@@ -98,8 +104,7 @@
                 <table>
                     <tbody class="platsResistance">
                     {% for plat in plats %}
-
-                        {% if plat.categorie == 'plat' %}
+                        {% if plat.categoriePlat.libelle == 'plat' %}
                             <tr class="lignePlats collapsed" data-target="detailsPlat{{ plat.id }}">
                                 <td>{{ plat.nomPlat }}</td>
                                 <td>
@@ -108,17 +113,20 @@
                                     {% endif %}
                                 </td>
                                 <td>{{ plat.prixVenteTTCPlat }} €</td>
-                                <td><a href="{{ path('app_admin_create',{'id': plat.id}) }}" class="btn-success">Modifier</a>
-                                </td>
-                                <td>
-                                    <a href="{{ path('app_supp_plats',{'id': plat.id}) }}"
-                                       class="btn-alert">Supprimer</a>
-                                </td>
+                                {% if is_granted("ROLE_ADMIN") or is_granted("ROLE_SUPER_ADMIN") %}
+                                    <td><a href="{{ path('app_admin_create',{'id': plat.id}) }}" class="btn-success">Modifier</a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('app_supp_plats',{'id': plat.id}) }}"
+                                           class="btn-alert boutonSupprimer">Supprimer</a>
+                                    </td>
+                                {% endif %}
                             </tr>
-                            <tr class="description" id="detailsPlat{{ plat.id }}">
+                            <tr class="detailCache" id="detailsPlat{{ plat.id }}">
                                 <td>
-                                    <p>{{ plat.descriptionPlat }}</p>
-
+                                    <p class="description">{{ plat.descriptionPlat }}</p>
+                                    <img class="imgDescription" src="{{ asset('images/'~plat.nomImage) }}"
+                                         alt="{{ plat.imgDescription }}">
                                 </td>
                             </tr>
 
@@ -132,4 +140,16 @@
 
         </div>
     </div>
+    <!-- Modal Container -->
+    <div id="modalContainer" class="modal-container" onclick="closeModal()">
+        <div id="modalContent" class="modal-content">
+            <h2 id="platTitle"></h2>
+            <img id="platImage" src="" alt="Plat Image">
+            <p id="platDescription"></p>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/laCarte.js') }}"></script>
 {% endblock %}

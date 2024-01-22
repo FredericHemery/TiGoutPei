@@ -33,9 +33,9 @@ class AdminController extends AbstractController
             $plats = new Plats();
             //$modification sert a verifier si c'est une modification ou une création de plat,
             // pour adapter le message de confirmation
-//            $modification = false;
+            $modification = false;
         } else {
-//            $modification = true;
+            $modification = true;
         }
             $nomPlatDebut = $plats->getNomPlat();
         //je récupere le formulaire créé avec dans le formType avec sa verification de données
@@ -45,18 +45,18 @@ class AdminController extends AbstractController
 
         //je verifie que le formulaire a bien été envoyé et que les données sont conforme a ce qui est attendu
         if ($platsForm->isSubmitted() && $platsForm->isValid()) {
-            //si c'est une création, je verifie que le plat n'existe pas déja
-//            if ($modification === false) {
-//                $platExiste = $entityManager->getRepository(Plats::class)->findOneBy(['nomPlat' => $plats->getNomPlat()]);
-//                //si le plat existe deja, je le signale
-//                if ($platExiste !== null) {
-//                    $this->addFlash('error', 'le nom du plat existe deja');
-//                    return $this->render('admin/create.html.twig', [
-//                        'platsForm' => $platsForm->createView(),
-//                        'plats' => $plats
-//                    ]);
-//                }
-//            }
+//            si c'est une création, je verifie que le plat n'existe pas déja
+            if ($modification === false) {
+                $platExiste = $entityManager->getRepository(Plats::class)->findOneBy(['nomPlat' => $plats->getNomPlat()]);
+                //si le plat existe deja, je le signale
+                if ($platExiste !== null) {
+                    $this->addFlash('error', 'le nom du plat existe deja');
+                    return $this->render('admin/create.html.twig', [
+                        'platsForm' => $platsForm->createView(),
+                        'plats' => $plats
+                    ]);
+                }
+            }
             //todo: approfondir l'aspect comptabilité
             //bien penser a arrondir! les prix sont stockés en float en BDD
 
@@ -69,9 +69,12 @@ class AdminController extends AbstractController
             // l'aspect comptable n'est pas encore aboutis. Comme la base de donnée attend des valeurs,
             //j'en crée par défaut meme si l'utilisateur n'en rentre pas
 
-            if ($prixHT == null) {
+            if ($prixHT === null) {
                 // si le prix ht n'est pas renseigné, la TVA forfaitaire de 10% est appliquée
                 $plats->setPrixVenteHTPlat($prixTTC / 1.1); //todo: simplifier
+            }
+            if ($prixRevient === null){
+                $plats->setPrixRevient(0);
             }
 
             // je prépare les données récupérée (par le formulaire de création ou de modification)

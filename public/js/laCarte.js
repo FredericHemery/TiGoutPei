@@ -1,21 +1,42 @@
-document.addEventListener('DOMContentLoaded', function () {
-    let lignePlats = document.querySelectorAll('.lignePlats');
+    document.addEventListener('DOMContentLoaded', function () {
+        let liensSupprimer = document.querySelectorAll('.boutonSupprimer');
 
-    lignePlats.forEach(function (plats) {
-        plats.addEventListener('click', function () {
-            // Ferme toutes les autres déscriptions avant d'ouvrir celle-ci
-            let autresDescriptions = document.querySelectorAll('.lignePlats:not(.collapsed)');
-            autresDescriptions.forEach(function (autresDescriptions) {
-                if (autresDescriptions !== plats) {
-                    autresDescriptions.classList.add('collapsed');
+        liensSupprimer.forEach(function (lienSupprimer) {
+            lienSupprimer.addEventListener('click', function (event) {
+                let resultat = confirm('Voulez-vous vraiment supprimer ce plat?');
+                if (resultat === false) {
+                    event.preventDefault();
                 }
             });
-            // Ouvre ou ferme la description
-            if (plats.classList.contains('collapsed')) {
-                plats.classList.remove('collapsed');
-            } else {
-                plats.classList.add('collapsed');
-            }
         });
+    });
+
+// Fonction pour ouvrir la modale
+function openModal(plat) {
+    let modalContainer = document.getElementById('modalContainer');
+    let platTitle = document.getElementById('platTitle');
+    let platDescription = document.getElementById('platDescription');
+    let platImage = document.getElementById('platImage');
+
+    platTitle.innerText = plat.querySelector('td:first-child').innerText;
+    let descriptionElement = plat.nextElementSibling.querySelector('td p.description');
+    platDescription.innerText = descriptionElement ? descriptionElement.innerText : '';
+    let imgDescription = plat.nextElementSibling.querySelector('td img.imgDescription');
+    platImage.src = imgDescription ? imgDescription.src:'';
+
+    modalContainer.style.display = 'block';
+}
+
+// Fonction pour fermer la modale
+function closeModal() {
+    let modalContainer = document.getElementById('modalContainer');
+    modalContainer.style.display = 'none';
+}
+
+// Attache l'événement de clic à chaque ligne du DOM avec la classe 'lignePlats'
+let lignePlats = document.querySelectorAll('.lignePlats');
+lignePlats.forEach(function (plat) {
+    plat.addEventListener('click', function () {
+        openModal(plat);
     });
 });

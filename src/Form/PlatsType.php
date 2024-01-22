@@ -26,20 +26,11 @@ class PlatsType extends AbstractType
                 'required' => false,
                 'trim' => true
             ])
-            ->add('categorie', ChoiceType::class, [
-                //todo:EntityType::class[ 'class'=>Categorie::class
-                    //'choice_label'=>'libelle'
-                    //'placeholder'=>'apero']
-
-
-                    'choices' => [
-                        'apero' => 'apero',
-                        'grignote' => 'grignote',
-                        'plat' => 'plat',
-                        'dessert' => 'dessert'
-                    ],
-                    'multiple' => false]
-            )
+            ->add('categoriePlat', EntityType::class, [
+                'class' => Categorie::class,
+                'choice_label' => 'libelle',
+                'multiple' => false
+            ])
             ->add('prixVenteTTCPlat', MoneyType::class, [
                 'label' => 'Prix de vente TTC',
                 'currency' => false
@@ -50,7 +41,6 @@ class PlatsType extends AbstractType
                 'currency' => false
             ])
             ->add('prixRevient', MoneyType::class, [
-                'empty_data'=> 0,
                 'label' => 'Prix de revient',
                 'required' => false,
                 'currency' => false

@@ -39,7 +39,6 @@ class Plats
     private ?string $descriptionPlat = null;
 
     #[ORM\Column]
-    #[Assert\NotBlank]
     #[Assert\PositiveOrZero (message: "Veuillez entrer un nombre positif")]
     private ?float $prixRevient;
 
@@ -58,24 +57,17 @@ class Plats
 
     #[ORM\Column(length: 50,nullable: true)]
     #[Assert\NoSuspiciousCharacters]
-    #[Assert\Regex('/^[a-zA-Z0-9\s]+$/',message: "Veuillez ne pas entrer de caracteres speciaux")]
+    #[Assert\Regex('/^[a-zA-Z0-9\sàâäçéèêëîïôöùûüÿ.,;:!?"\'()\-]+$/',message: "Veuillez ne pas entrer de caracteres speciaux")]
     private ?string $imgDescription = null;
 
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     #[Assert\Regex('/^\d+$/',message: "Veuillez entrer un entier positif")]
     private ?int $quantite = null;
 
-// definition de la liste de choix
-    public const CATEGORIE = ['apero','grignote','plat','dessert'];
-    #[ORM\Column(length: 8)]
-    #[Assert\Length (min: 4,
-        max: 8,
-        minMessage: 'Choisissez une catégorie valide',
-        maxMessage: 'Choisissez une catégorie valide')]
 
-    #[Assert\Choice (choices: Plats::CATEGORIE, message: "Choisissez une catégorie valide")]
-    #[Assert\NoSuspiciousCharacters]
-        private ?string $categorie = null;
+    #[ORM\ManyToOne(inversedBy: 'plats')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Categorie $categoriePlat = null;
 
     public function __construct()
     {
@@ -210,14 +202,15 @@ class Plats
         return $this;
     }
 
-    public function getCategorie(): ?string
+
+    public function getCategoriePlat(): ?Categorie
     {
-        return $this->categorie;
+        return $this->categoriePlat;
     }
 
-    public function setCategorie(string $categorie): static
+    public function setCategoriePlat(?Categorie $categoriePlat): static
     {
-        $this->categorie = $categorie;
+        $this->categoriePlat = $categoriePlat;
 
         return $this;
     }
