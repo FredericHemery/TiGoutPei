@@ -2,18 +2,26 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Categorie;
 use App\Entity\Plats;
+use App\Repository\CategorieRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 class PlatsFixtures extends Fixture
 {
+    private $categorieRepository;
+    public function __construct(CategorieRepository $categorieRepository)
+// je declare la dépendance avec la classe categorieRepository dans le constructeur
+    {
+        $this->categorieRepository = $categorieRepository;
+    }
     public function load(ObjectManager $manager): void
     {
+        // Je récupere toutes les catégories de la base de données
+        $categories = $this->categorieRepository->findAll();
         for ($i = 1; $i <= 20; $i++)
         {
-            $alea= rand(0,3);
-
             $faker = \Faker\Factory::create();
             $prixHT= $faker->randomFloat(null,2,50.23);
             $prixTTC= $prixHT*1.1;
@@ -28,24 +36,10 @@ class PlatsFixtures extends Fixture
             $plat->setNomImage($faker->word);
             $plat->setQuantite($faker->optional(0.7,null)->randomDigit(1,9));
             // Affecte une catégorie aleatoirement
-            //todo: mettre a jour avec table categorie
-            switch ($alea) {
-                case 0:
-                    $plat->setCategorie("apero");
-                    break;
-                case 1:
-                    $plat->setCategorie("grignote");
-                    break;
-                case 2:
-                    $plat->setCategorie("plat");
-                    break;
-                case 3:
-                     $plat->setCategorie("dessert");
-                    break;
-                default:
-                    $plat->setCategorie("inconnu");
-                    break;
-            }
+
+            $randomCategory = $categories[array_rand($categories)];
+            $plat->setCategoriePlat($randomCategory);
+
             $manager->persist($plat);
         }
         $manager->flush();

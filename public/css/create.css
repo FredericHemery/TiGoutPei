@@ -5,8 +5,6 @@
     label {
         display: block;
     }
-
-
     input, textarea, select {
         box-sizing: border-box;
         margin-bottom: 1rem;
@@ -23,21 +21,17 @@
 }
 
 @media (width >990px) {
-
     form {
         width: 50%;
     }
     label {
         display: block;
     }
-
-
     input, textarea, select {
         box-sizing: border-box;
         margin-bottom: 1rem;
         width: 100%;
     }
-
     label {
         text-align: center;
     }

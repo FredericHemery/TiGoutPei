@@ -26,7 +26,7 @@ class RechercheType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Recherche par mot clé',
                     // j'inclue ici la class bootstrap pour gerer la mise en forme car elle n'est pas trop volumineuse
-                    // sinon je l'aurais mise dans le twig
+                    // sinon je l'aurais mise dans le twig pour la lisibilité
                     'class' => 'form-control'
                 ]
             ]);

@@ -45,17 +45,18 @@
     color: #D1678B;
 }
 
-.brand > h4 {
+.brand > h3 {
     font-size: 1em;
     color: white;
+    text-align: left;
 }
 
 .brand > a {
     text-decoration: none;
-    margin-top: 5em;
+    margin-top: 4em;
 }
 
-a.flexRow>div{
+a.flexRow > div {
     justify-content: center;
 }
 
@@ -174,6 +175,11 @@ aside > .texte {
 .liens > a > div > p {
     text-align: center;
 }
+
+h2 {
+    font-size: 1rem;
+}
+
 
 .fleur {
     height: 5em;

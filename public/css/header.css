@@ -8,11 +8,6 @@
         align-content: center;
     }
 
-
-    h5 {
-        display: none;
-    }
-
     .contactContainer {
         display: flex;
         flex-direction: column;

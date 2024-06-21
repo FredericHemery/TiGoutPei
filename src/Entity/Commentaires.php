@@ -14,7 +14,7 @@ class Commentaires
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?string $dateParution = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]

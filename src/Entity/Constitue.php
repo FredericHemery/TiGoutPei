@@ -19,11 +19,21 @@ class Constitue
     #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: '0')]
     private ?string $quantite = null;
 
-    #[ORM\ManyToMany(targetEntity: Commande::class, inversedBy: 'constitues')]
+//    #[ORM\ManyToMany(targetEntity: Commande::class, inversedBy: 'constitues')]
+    #[ORM\ManyToOne(targetEntity: Commande::class)]
+    #[ORM\JoinColumn(name: "num_com_id", referencedColumnName: "id")]
     private Collection $numCom;
 
-    #[ORM\ManyToMany(targetEntity: Plats::class, inversedBy: 'constitues')]
+//    #[ORM\ManyToMany(targetEntity: Plats::class, inversedBy: 'constitues')]
+    #[ORM\ManyToOne(targetEntity: Plats::class)]
+    #[ORM\JoinColumn(name: "num_plat_id", referencedColumnName: "id")]
     private Collection $numPlat;
+
+    #[ORM\Column]
+    private ?float $prixHT = null;
+
+    #[ORM\Column]
+    private ?float $prixTTC = null;
 
     public function __construct()
     {
@@ -92,6 +102,30 @@ class Constitue
     public function removeNumPlat(Plats $numPlat): static
     {
         $this->numPlat->removeElement($numPlat);
+
+        return $this;
+    }
+
+    public function getPrixHT(): ?float
+    {
+        return $this->prixHT;
+    }
+
+    public function setPrixHT(float $prixHT): static
+    {
+        $this->prixHT = $prixHT;
+
+        return $this;
+    }
+
+    public function getPrixTTC(): ?float
+    {
+        return $this->prixTTC;
+    }
+
+    public function setPrixTTC(float $prixTTC): static
+    {
+        $this->prixTTC = $prixTTC;
 
         return $this;
     }

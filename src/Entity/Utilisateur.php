@@ -151,7 +151,6 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     #[ORM\Column]
-    #[Assert\NoSuspiciousCharacters]
     private array $roles = [];
 
     /**

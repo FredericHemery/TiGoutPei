@@ -20,17 +20,17 @@
             <div class="listesContainer flexRow">
                 <table>
                     <tbody>
-                    {% for plat in plats %}
-
-                        {% if plat.categoriePlat.libelle == 'apero' %}
-                            <tr class="lignePlats collapsed" data-target="detailsPlat{{ plat.id }}">
+                    {% for plat in plats %}                                                             {# Je boucle sur les plats  #}
+                        {% if plat.categoriePlat.libelle == 'apero' %}                                  {# Je trie les plats en fonction de leur catégorie  #}
+                            <tr class="lignePlats" data-target="detailsPlat{{ plat.id }}">
                                 <td>{{ plat.nomPlat }}</td>
                                 <td>
-                                    {% if plat.quantite is not null %}
+                                    {% if plat.quantite is not null %}                                  {# si le plats a une quantité je l'affiche  #}
                                         {{ plat.quantite }} pièces
                                     {% endif %}
                                 </td>
                                 <td>{{ plat.prixVenteTTCPlat }} €</td>
+                                {# si l'utilisateur est identifié en tant qu'admin j'affiche des boutons de modification et de suppression  #}
                                 {% if is_granted("ROLE_ADMIN") or is_granted("ROLE_SUPER_ADMIN") %}
                                     <td><a href="{{ path('app_admin_create',{'id': plat.id}) }}" class="btn-success">Modifier</a>
                                     </td>
@@ -140,11 +140,11 @@
 
         </div>
     </div>
-    <!-- Modal Container -->
+    <!-- Modale -->
     <div id="modalContainer" class="modal-container" onclick="closeModal()">
         <div id="modalContent" class="modal-content">
             <h2 id="platTitle"></h2>
-            <img id="platImage" src="" alt="Plat Image">
+            <img id="platImage" src="" alt="">
             <p id="platDescription"></p>
         </div>
     </div>

@@ -35,7 +35,7 @@ class Plats
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\NoSuspiciousCharacters]
-    #[Assert\Regex('/^[a-zA-Z0-9\s\']+$/u',message: "Veuillez ne pas entrer de caracteres speciaux")]
+    #[Assert\Regex('/^[a-zA-Z0-9\sàâäçéèêëîïôöùûüÿ.,;:!?"\'()\-]+$/',message: "Veuillez ne pas entrer de caracteres speciaux")]
     private ?string $descriptionPlat = null;
 
     #[ORM\Column]
