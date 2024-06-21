@@ -1,5 +1,5 @@
 Ce projet à été réalisé en deux moi dans le cadre d'un stage de formation.
-Il est LARGEMENT perfectible mais je pense qu'il donne un assez bon apperçu des compétences que j'ai pu développer.
+Il est perfectible mais je pense qu'il donne un assez bon apperçu des compétences que j'ai pu développer.
 
 Page d'accueil:
 ![image](https://github.com/FredericHemery/TiGoutPei/assets/142792072/654cec45-a4c3-4717-a921-d4a8843017a7)
